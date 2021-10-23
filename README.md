@@ -58,3 +58,19 @@
   - RTCPeerConnection
     - 调用过程
   - RTCDataChannel
+## Web服务器搭建
+  > Web服务器选型
+    - Nodejs
+    - Nginx
+    - Apache
+  > Nodejs工作原理
+  > 最简单的http服务
+
+    - require引入http模块
+    - 创建http服务
+    - 侦听端口
+    - 启动Nodejs服务
+      - node app.js
+      - nohub node app.js &
+      - forever start server.js
+        - forever stop server.js
