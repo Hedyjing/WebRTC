@@ -74,3 +74,9 @@
       - nohub node app.js &
       - forever start server.js
         - forever stop server.js
+  > 创建https服务
+
+    > HTTP + TLS/SSL
+    - 生成HTTPS证书
+    - 引入HTTPS模块
+    - 指定证书位置, 并创建HTTPS服务
