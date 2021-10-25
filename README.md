@@ -80,3 +80,10 @@
     - 生成HTTPS证书
     - 引入HTTPS模块
     - 指定证书位置, 并创建HTTPS服务
+  > 实现一个最终的Web服务器
+
+    - 引用express模块
+      - web服务框架
+    - 引入 serve-index模块
+      - 发布整个目录
+    - 指定发布目录
