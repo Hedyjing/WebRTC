@@ -96,3 +96,11 @@
     |label|设备的名字|
     |kind|设备的种类|
     |groupID|两个设备groupID相同， 说明是同一个物理设备|
+## 采集音视频数据
+  > API
+    - navigator.mediaDevices.getUserMedia(constraints) // 返回promise
+      - getUserMedia
+      - webkitGetUserMedia
+      - mozGetUserMedia
+    - MediaStreamConstraints
+  > adapter适配不同浏览器的WebRTC API
