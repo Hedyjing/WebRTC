@@ -23,3 +23,5 @@ let options = {
 }
 let https_server = https.createServer(options, app)
 https_server.listen(443, '0.0.0.0')
+
+console.log('服务已经启动： https://49.235.110.63')

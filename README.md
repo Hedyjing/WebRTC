@@ -87,3 +87,12 @@
     - 引入 serve-index模块
       - 发布整个目录
     - 指定发布目录
+## 获取音视频设备
+  - navigator.mediaDevices.enumerateDevices();  // 返回一个promise对象
+  - MediaDevicesInfo   // then 成功回调的函数的参数类型
+    |属性 | 说明 |
+    |---|---|
+    |deviceID|设备ID|
+    |label|设备的名字|
+    |kind|设备的种类|
+    |groupID|两个设备groupID相同， 说明是同一个物理设备|
