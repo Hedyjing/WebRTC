@@ -52,18 +52,22 @@
 |video_processing|视频前后处理相关代码|
 
 ## WebRTC运行机制
-> 轨与流
-> 重要类
-  - MediaStream
-  - RTCPeerConnection
-    - 调用过程
-  - RTCDataChannel
+  > 轨与流
+
+  > 重要类
+
+    - MediaStream
+    - RTCPeerConnection
+      - 调用过程
+    - RTCDataChannel
 ## Web服务器搭建
   > Web服务器选型
+
     - Nodejs
     - Nginx
     - Apache
   > Nodejs工作原理
+
   > 最简单的http服务
 
     - require引入http模块
@@ -98,9 +102,67 @@
     |groupID|两个设备groupID相同， 说明是同一个物理设备|
 ## 采集音视频数据
   > API
+
     - navigator.mediaDevices.getUserMedia(constraints) // 返回promise
       - getUserMedia
       - webkitGetUserMedia
       - mozGetUserMedia
     - MediaStreamConstraints
   > adapter适配不同浏览器的WebRTC API
+
+  > getUserMedia视频参数约束
+
+    - width
+    - height
+    - aspectRatio(分辨率)
+    - frameRate(帧率)
+    - facingMode(值为字符串形式)
+      - user: 前置摄像头
+      - environment: 后置摄像头
+      - left: 前置左侧摄像头
+      - right: 前置右侧摄像头
+    - resizeMode(裁剪)
+  > getUserMedia音频参数约束
+
+    - volume(音量0-1.0)
+    - sampleRate(采样率)
+    - sampleSize(采样大小, 一般16位)
+    - echoCancellation(true | false 回音消除)
+    - autoGainControl(自动增益)
+    - noiseSupperssion(降噪)
+    - latency(延迟大小, 设置小, 通讯延迟小, 但质量不佳)
+    - channelCount(单声道|双声道)
+    - deviceID
+    - groupID
+  > 视频特效
+
+    > CSS filter, -webkit-filter/filter
+    > 将video和filter关联
+    > OpenGL/Metal/
+    > 支持的特效种类
+
+  |特效|说明|特效|说明|
+  |---|---|---|---|
+  |grayscale|灰度|opacity|透明度|
+  |sepia|褐色|brightness|亮度|
+  |saturate|饱和度|contrast|对比度|
+  |hue-rotate|色相旋转|blur|模糊|
+  |invert|反色|drop-shadow|阴影|
+
+  > 从视频中获取图像
+
+    - 利用canvas
+  > 只采集音频数据
+
+    - audio标签.srcObject = stream
+  > MidiaStream API及获取视频约束
+
+    - MediaStream.addTrack() // 从媒体流中加入不同的轨
+    - MediaStream.removeTrack()  // 从媒体流中移除轨
+    - MediaStream.getVideoTracks()  // 拿到视频轨
+    - MediaStream.getAudioTracks()  // 拿到音频轨
+    - MediaStream.stop()  // 关闭媒体流
+    --------
+    - MediaStream.onaddtrack //添加媒体轨到流中时触发的事件
+    - MediaStream.onremovetrack // 同理
+    - MediaStream.onended // 流结束时的事件
