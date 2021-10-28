@@ -166,3 +166,40 @@
     - MediaStream.onaddtrack //添加媒体轨到流中时触发的事件
     - MediaStream.onremovetrack // 同理
     - MediaStream.onended // 流结束时的事件
+
+## WebRTC录制媒体流
+
+  > MediaRecorder
+
+    基本格式: 
+      new MediaRecorder(stream[,options])
+    参数: 
+      stream可以从getUserMedia, <video>, <audio>或<canvas>获取
+      options: 
+        - mimeType
+          - video/webm
+          - audio/webm
+          - video/webm;codecs=vp8
+          - video/webm;codecs=h264
+          - audio/webm;codecs=opus
+        - audioBitsPerSecond 音频码率
+        - videoBitsPerSecond 视频码率
+        - bitsPerSecond 整体码率
+      API: 
+        - MediaRecorder.start(timeslice)
+          - 开始录制, timeslice是可选的, 如果设置了会按时间切片存储数据
+        - MediaRecorder.stop()
+          - 停止录制, 此时会触发包括最终Blob数据的dataavailabel事件
+        - MediaRecorder.pause() 暂停
+        - MediaRecorder.resume() 恢复录制
+        - MediaRecorder.isTypeSupported() 检查支持格式
+      事件: 
+        - MediaRecorder.ondataavailable
+          - 每次记录一定时间的数据时会定期触发
+        - MediaRecorder.onerror
+          - 发生错误事触发
+      存储数据方式: 
+        1. 字符串
+        2. Blob
+        3. ArrayBuffer
+        4. ArrayBufferView
