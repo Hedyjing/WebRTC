@@ -203,3 +203,14 @@
         2. Blob
         3. ArrayBuffer
         4. ArrayBufferView
+
+## 采集屏幕数据
+
+  > getDisplayMedia
+
+    基本格式: 
+      navigator.mediaDevices.getDisplayMedia(constraints)
+      constraints与getUserMedia中的constraints一致
+    设置chrome
+      chrome://flags
+    把client.js中的getUserMedia全部替换为getDisplayMedia

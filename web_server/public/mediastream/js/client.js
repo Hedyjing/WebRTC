@@ -27,11 +27,11 @@ let btnDownload = document.querySelector('button#download')
 let buffer, mediaRecorder
 
 let start = () => {
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    console.log('getUserMedia is not supported!')
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+    console.log('getDisplayMedia is not supported!')
   } else {
     let deviceId = videoSource.value
-    navigator.mediaDevices.getUserMedia(
+    navigator.mediaDevices.getDisplayMedia(
       {
         audio: false, 
         video: {
@@ -72,7 +72,7 @@ let start = () => {
         })
       })
       .catch(err => {
-        console.log('getUserMedia error: ', err)
+        console.log('getDisplayMedia error: ', err)
       })
   }
 }
