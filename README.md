@@ -214,3 +214,45 @@
     设置chrome
       chrome://flags
     把client.js中的getUserMedia全部替换为getDisplayMedia
+## WebRTC信令服务器实现
+
+  > Socket.IO服务端发送消息
+
+    - 给本次连接发送消息
+      - socket.emit()
+    - 给某个房间内所有人发消息
+      - io.in(room).emit() // io表示一个节点(所有人都在),in表示进入某个房间内
+    - 除本连接外, 给某个房间内所有人发消息
+      - socket.to(room).emit()
+    - 除本连接外, 给所有人发消息(该站点, 可能很多房间)
+      - socket.broadcast.emit()
+
+  > Socket.IO客户端处理消息
+
+    - 发送action命令
+      S: socket.emit('action')
+      C: socket.on('action', function(){...})
+    - 发送action命令, 还有data数据
+      S: socket.emit('action', data)
+      C: socket.on('action', function(data){...})
+    - 发送action命令, 有两个数据
+      S: socket.emit('action', arg1, arg2)
+      C: socket.on('action', function(arg1, arg2){...})
+    - 发送action命令, emit总包含回调函数
+      S: socket.emit('action', data, function(arg1, arg2) {...})
+      C: socket.on('action', function(data, fn){fn('a', 'b')})
+
+  > 信令服务器原理
+
+    - socket.io是WebSocket的超集
+    - socket.io有房间的概念
+      > socket.io的房间服务器和信令服务器在同一服务器上
+      1. 房间服务器
+      2. 信令服务器
+      3. 流媒体中转
+    - socket.io跨平台, 跨终端, 跨语言
+  > 信令服务器的实现
+
+    - 安装socket.io
+    - 引入socket.io
+    - 处理connection消息
