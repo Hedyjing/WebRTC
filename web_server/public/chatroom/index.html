@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小绿聊天室</title>
+</head>
+<body>
+  <table align="center">
+    <tr>
+      <td>
+        <label for="">UserName: </label>
+        <input type="text" id="username">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="">Room: </label>
+        <input type="text" id='room'>
+        <button id='connect'>Connect</button>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="">Content: </label><br>
+        <textarea disabled id="output" cols="50" rows="10"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="">Input: </label><br>
+        <textarea disabled id="input" cols="50" rows="3"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button id="send">Send</button>
+      </td>
+    </tr>
+  </table>
+  <script src="https://cdn.bootcdn.net/ajax/libs/socket.io/2.2.0/socket.io.slim.js"></script>
+  <script src='./js/client.js'></script>
+</body>
+</html>

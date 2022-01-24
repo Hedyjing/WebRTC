@@ -51,13 +51,44 @@ let https_server = https.createServer(options, app)
 
 // bind socket.io with https_server
 let io = socketIo.listen(https_server)
+let sockio = socketIo.listen(http_server)
 
 // connection
-io.socketIo.on('connection', (socket) => {
+io.sockets.on('connection', (socket) => {
   socket.on('join', (room) => {
+    console.log(room)
+    socket.join(room)
+    // let myRoom = io.sockets.adapter.rooms[room]
+    // let users = Object.keys(myRoom.sockets).length
+    // logger.log('the number of user in room is: ' + users)
+    // socket.emit('joined', room, socket.id) // 给自己
+    // socket.to(room).emit('joined', room, socket.id) // 除自己外房间所有人
+    // io.in(room).emit('joined', room, socket.id) //房间内所有人
+    console.log("socket.id" + socket.id)
+    socket.broadcast.emit('joined', room, socket.id)
+  })
+
+  socket.on('leave', (room) => {
+    let myRoom = io.sockets.adapter.rooms[room]
+    let users = Object.keys(myRoom.sockets).length
+
+    logger.log('the number of user in room is: ' + users - 1)
+
+    socket.leave(room)
+    // socket.emit('joined', room, socket.id) // 给自己
+    // socket.to(room).emit('joined', room, socket.id) // 除自己外房间所有人
+    // io.in(room).emit('joined', room, socket.id) //房间内所有人
+    socket.broadcast.emit('joined', room, socket.id)
+  })
+})
+
+sockio.sockets.on('connection', (socket) => {
+  socket.on('join', (room) => {
+    console.log('jinru')
     socket.join(room)
     let myRoom = io.sockets.adapter.rooms[room]
-    let users =  Object.keys(myRoom.sockets).length
+    let users = Object.keys(myRoom.sockets).length
+    console.log(users)
     logger.log('the number of user in room is: ' + users)
     // socket.emit('joined', room, socket.id) // 给自己
     // socket.to(room).emit('joined', room, socket.id) // 除自己外房间所有人
